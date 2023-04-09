@@ -1,0 +1,2 @@
+az group create -n arch2 -l eastus
+az vm create --resource-group arch2 --name myVM --image UbuntuLTS --admin-username azureuser --admin-password Devops@123456 --vnet-name MyVnet --subnet app 

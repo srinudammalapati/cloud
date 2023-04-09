@@ -1,0 +1,25 @@
+az group create --name hubandspok --location westus
+az network vnet create --resource-group hubandspok --name hub --address-prefixes 10.0.0.0/16
+az network vnet subnet create -g hubandspok --vnet-name hub --name hub1 --address-prefixes 10.0.0.0/24
+az network vnet subnet create -g hubandspok --vnet-name hub --name hub2 --address-prefixes 10.0.1.0/24
+az group create --name remotergroup1 --location centralus
+az network vnet create --resource-group remotergroup1 --name spok1 --address-prefixes 10.1.0.0/16
+az network vnet subnet create -g remotergroup1 --vnet-name spok1 --name subspok11 --address-prefixes 10.1.0.0/24
+az network vnet subnet create -g remotergroup1 --vnet-name spok1 --name subspok11 --address-prefixes 10.1.1.0/24
+az group create --name remotergroup2 --location eastus
+az network vnet create --resource-group remotergroup2 --name spok2 --address-prefixes 10.2.0.0/16
+az network vnet subnet create -g remotergroup2 --vnet-name spok2 --name subspok21 --address-prefixes 10.2.0.0/24
+az network vnet subnet create -g remotergroup2 --vnet-name spok2 --name subspok22 --address-prefixes 10.2.1.0/24
+az group create --name remotergroup3 --location canadacentral
+az network vnet create --resource-group remotergroup3 --name spok3 --address-prefixes 10.3.0.0/16
+az network vnet subnet create -g remotergroup3 --vnet-name spok3 --name subspok31 --address-prefixes 10.3.0.0/24
+az network vnet subnet create -g remotergroup3 --vnet-name spok3 --name subspok32 --address-prefixes 10.3.1.0/24
+az group create --name remotergroup4 --location centralindia
+az network vnet create --resource-group remotergroup4 --name spok4 --address-prefixes 10.4.0.0/16
+az network vnet subnet create -g remotergroup4 --vnet-name spok4 --name subspok41 --address-prefixes 10.4.0.0/24
+az network vnet subnet create -g remotergroup4 --vnet-name spok4 --name subspok42 --address-prefixes 10.4.1.0/24
+az network vnet peering create -g hubandspok --name hubtospoke1 --vnet-name hub --remote-vnet /subscriptions/39ab92ff-809e-4faf-bc99-93c54eb784ac/resourceGroups/remotergroup1/providers/Microsoft.Network/virtualNetworks/spok1 --allow-forwarded-traffic --allow-vnet-access
+az network vnet peering create -g hubandspok --name hubtospoke2 --vnet-name hub --remote-vnet /subscriptions/39ab92ff-809e-4faf-bc99-93c54eb784ac/resourceGroups/remotergroup2/providers/Microsoft.Network/virtualNetworks/spok2 --allow-forwarded-traffic --allow-vnet-access
+az network vnet peering create -g hubandspok --name hubtospoke3 --vnet-name hub --remote-vnet /subscriptions/39ab92ff-809e-4faf-bc99-93c54eb784ac/resourceGroups/remotergroup3/providers/Microsoft.Network/virtualNetworks/spok3 --allow-forwarded-traffic --allow-vnet-access
+az network vnet peering create -g hubandspok --name hubtospoke4 --vnet-name hub --remote-vnet /subscriptions/39ab92ff-809e-4faf-bc99-93c54eb784ac/resourceGroups/remotergroup4/providers/Microsoft.Network/virtualNetworks/spok4 --allow-forwarded-traffic --allow-vnet-access
+az network lb create --name hubloadbalancer -g hubandspok --public-ip-address-allocation Dynamic --vnet-name hub 

@@ -1,0 +1,6 @@
+az group create --name peer --location centralus
+az network vnet create --resource-group peer --name vnet1 --address-prefixes 10.10.0.0/16
+az network vnet subnet create -g peer --vnet-name vnet1 --name vnet1subnet1 --address-prefixes 10.10.0.0/24
+az network vnet create --resource-group peer --location eastus --name vnet2 --address-prefixes 10.12.0.0/16
+az network vnet subnet create -g peer --vnet-name vnet2 --name vnet2subnet2 --address-prefixes 10.12.0.0/24
+az network vnet peering create -g peer --name peervnet1to2 --vnet-name vnet1 --remote-vnet vnet2

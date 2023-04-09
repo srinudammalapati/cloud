@@ -1,0 +1,14 @@
+az group create --name rgone --location eastus
+az group create --name rgsecond --location westus
+az network vnet create --resource-group rgone --name mynetwork1 --address-prefixes 10.0.0.0/16 >C:\Users\Murali\Desktop\.source\cli\outfiles\mynet1.txt
+az network vnet create --resource-group rgsecond --name mynetwork2 --address-prefixes 10.1.0.0/16 >C:\Users\Murali\Desktop\.source\cli\outfiles\mynet2.txt
+az network vnet subnet create -g rgone --vnet-name mynetwork1 -n data --address-prefixes 10.0.0.0/24
+az network vnet subnet create -g rgone --vnet-name mynetwork1 -n cache --address-prefixes 10.0.1.0/24
+az network vnet subnet create -g rgone --vnet-name mynetwork1 -n web --address-prefixes 10.0.2.0/24
+az network vnet subnet create -g rgone --vnet-name mynetwork1 -n app --address-prefixes 10.0.3.0/24
+az network vnet subnet create -g rgone --vnet-name mynetwork1 -n bastion --address-prefixes 10.0.4.0/24
+az network vnet subnet create -g rgsecond --vnet-name mynetwork2 -n data --address-prefixes 10.1.0.0/24
+az network vnet subnet create -g rgsecond --vnet-name mynetwork2 -n cache --address-prefixes 10.1.1.0/24
+az network vnet subnet create -g rgsecond --vnet-name mynetwork2 -n app --address-prefixes 10.1.2.0/24
+az network vnet subnet create -g rgsecond --vnet-name mynetwork2 -n bastion --address-prefixes 10.1.3.0/24
+az network vnet subnet create -g rgsecond --vnet-name mynetwork2 -n web --address-prefixes 10.1.4.0/24

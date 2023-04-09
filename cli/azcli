@@ -1,0 +1,5 @@
+az group create --name task1 --location westus
+az network vnet create --resource-group task1 --name hub --address-prefixes 10.0.0.0/16
+az network vnet subnet create -g task1 --vnet-name hub --name hubsubnet --address-prefixes 10.0.0.0/24
+##  vm creation
+az vm create -n MyVm -g MyResourceGroup --location westus --zone 1 --vnet-name hub --subnet hubsubnet --image ubuntults --admin-username admin --admin-password admin@12345 --tag "dep" = "opertations" ----private-ip-address ""

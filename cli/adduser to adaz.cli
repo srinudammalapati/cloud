@@ -1,0 +1,15 @@
+az ad user create --display-name admin --password admin@12345 --user-principal-name admin1@pudivikashhotmail.onmicrosoft.com --force-change-password-next-sign-in false 
+az ad user create --display-name devloper --password admin@12345 --user-principal-name devloper1@pudivikashhotmail.onmicrosoft.com --force-change-password-next-sign-in false  
+az ad user create --display-name tester --password admin@12345 --user-principal-name tester1@pudivikashhotmail.onmicrosoft.com --force-change-password-next-sign-in false  
+az role assignment create --assignee 088ede91-ee0d-4abc-988f-a9b2e00faf8d --role "owner" --description "giving admin to full owner permissions" --scope /subscriptions/39ab92ff-809e-4faf-bc99-93c54eb784ac
+az role assignment create --assignee 4f928351-8899-4f2f-bab9-3b2fc71c8f21 --role "network contributor" --description "network owner" --scope /subscriptions/39ab92ff-809e-4faf-bc99-93c54eb784ac
+az role assignment create --assignee 7cf48ca0-4acc-4f63-a944-ebd54184773e --role "customrole012" --description "can create vm delete vm" --scope /subscriptions/39ab92ff-809e-4faf-bc99-93c54eb784ac
+
+#added role network reader
+#az role definition create --role-definition ad-role.json
+
+
+az ad user create --display-name user1 --password admin@12345 --user-principal-name user1@pudivikashhotmail.onmicrosoft.com --force-change-password-next-sign-in false
+az role definition create --role-definition customrole1.json
+
+az role assignment delete --assignee 7cf48ca0-4acc-4f63-a944-ebd54184773e --role "customrole00"
