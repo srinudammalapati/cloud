@@ -1,6 +1,6 @@
 FROM node:14
 
-WORKDIR /cloud/task/
+WORKDIR /app
 
 COPY package*.json ./
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "index,js"]
+CMD ["node", "index.js"]
