@@ -3,7 +3,7 @@ var mysql = require("mysql");
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "RootRoot",
     database: "students_records",
 });
 
@@ -22,7 +22,7 @@ connection.connect((err) => {
     }
 });
 
-var sql = "SELECT * FROM students";
+var sql = "SELECT * FROM student";
 connection.query(sql, function (err, result) {
   console.log(result);
 });
